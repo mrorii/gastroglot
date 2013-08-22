@@ -1,6 +1,8 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+import unicodedata
+
 import nltk
 import MeCab
 
@@ -11,36 +13,43 @@ JA_TOKENIZER = nltk.tokenize.RegexpTokenizer(u'[^{0}]*([{0}]+|$)'.format(JA_SYMB
 EN_SYMBOLS = u'☆★♡♥❤♪♬♫✿'
 EN_TOKENIZER = nltk.tokenize.RegexpTokenizer(u'[^{0}]*([{0}]+|$)'.format(EN_SYMBOLS))
 
+def normalize(s):
+    return unicodedata.normalize('NFKC', s)
+
 def sent_tokenize_ja(s):
+    '''returns a list of strings'''
     return JA_TOKENIZER.tokenize(s)[:-1]
 
 def sent_tokenize_en(s):
+    '''returns a list of strings'''
     sentences = EN_TOKENIZER.tokenize(s)[:-1]
     sentencess = map(lambda sent: nltk.sent_tokenize(sent.strip()), sentences)
     return [sentence for sentences in sentencess for sentence in sentences]
 
 def sent_tokenize(s, lang=None):
     if lang == 'en':
-        return sent_tokenize_en(s)
+        return sent_tokenize_en(normalize(s))
     elif lang == 'ja':
-        return sent_tokenize_ja(s)
+        return sent_tokenize_ja(normalize(s))
     else:
         raise NotImplementedError
 
 def word_tokenize_ja(s):
+    '''returns a string'''
     string = s.encode("utf-8")
     output = MECAB.parse(string)
     tokens = output.decode('utf8')
     return tokens.strip()
 
 def word_tokenize_en(s):
+    '''returns a string'''
     return ' '.join(nltk.wordpunct_tokenize(s.strip()))
 
 def word_tokenize(s, lang=None):
     if lang == 'en':
-        return word_tokenize_en(s)
+        return word_tokenize_en(normalize(s))
     elif lang == 'ja':
-        return word_tokenize_ja(s)
+        return word_tokenize_ja(normalize(s))
     else:
         raise NotImplementedError
 
