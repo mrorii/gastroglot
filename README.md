@@ -7,7 +7,7 @@ A collection of glue code for the task of translating Japanese recipes into Engl
 * [MeCab](https://code.google.com/p/mecab/)
 * [MeCab python binding](http://mecab.googlecode.com/svn/trunk/mecab/doc/bindings.html)
 * [cdec](https://github.com/redpony/cdec)
-* [hunalign](https://github.com/mrorii/hunalign)
+* [hunalign](http://mokk.bme.hu/resources/hunalign/)
 
 ## Prerequisite
 
@@ -21,7 +21,7 @@ An example recipe should look like the following:
 ```json
 {
     "id": 2189047,
-    "name": "Julienne burdock beef roll"
+    "name": "Julienne burdock beef roll",
     "description": "It is good for bento",
     "ingredients": [
         {
@@ -104,7 +104,7 @@ cd hunalign/src/hunalign
 make
 ```
 
-From now on, we will refer to HUNALIGN as the path where hunalign was installed.
+From now on, we will refer to `HUNALIGN` as the path where hunalign was installed.
 
 Generate input for hunalign (i.e. separate text into chunks that hunalign can handle):
 
