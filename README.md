@@ -140,22 +140,23 @@ Convert the alignment indices into actual text:
 # Assuming that the training file was split into 7 chunks,
 for i in {1..7}
   do
-  scripts/ladder2text.py ~/dev/gastroglot/data/hunalign/cookpad.train.$i.align \
-                         ~/dev/gastroglot/data/hunalign/cookpad.train.$i.ja \
-                         ~/dev/gastroglot/data/hunalign/cookpad.train.$i.en \
-                         > ~/dev/gastroglot/data/hunalign/cookpad.train.$i.align.txt
+  scripts/ladder2text.py $GASTROGLOT/data/hunalign/cookpad.train.$i.align \
+                         $GASTROGLOT/data/hunalign/cookpad.train.$i.ja \
+                         $GASTROGLOT/data/hunalign/cookpad.train.$i.en \
+                         > $GASTROGLOT/data/hunalign/cookpad.train.$i.align.txt
 done
 
 # dev and test
 # Assuming that there's only 1 chunk for dev and test,
 for t in dev test
   do
-  scripts/ladder2text.py ~/dev/gastroglot/data/hunalign/cookpad.$t.1.align \
-                         ~/dev/gastroglot/data/hunalign/cookpad.$t.1.ja \
-                         ~/dev/gastroglot/data/hunalign/cookpad.$t.1.en \
-                         > ~/dev/gastroglot/data/hunalign/cookpad.$t.align.txt
+  scripts/ladder2text.py $GASTROGLOT/data/hunalign/cookpad.$t.1.align \
+                         $GASTROGLOT/data/hunalign/cookpad.$t.1.ja \
+                         $GASTROGLOT/data/hunalign/cookpad.$t.1.en \
+                         > $GASTROGLOT/data/hunalign/cookpad.$t.align.txt
 done
-cat data/hunalign/cookpad.train.*.align.txt > data/hunalign/cookpad.train.align.txt
+cat $GASTROGLOT/data/hunalign/cookpad.train.*.align.txt > \
+    $GASTROGLOT/data/hunalign/cookpad.train.align.txt
 ```
 
 Generate cdec input:
