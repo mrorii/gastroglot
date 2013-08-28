@@ -26,7 +26,7 @@ def main():
     if diff:
         sys.stderr.write('{0} corresponding parallel missing\n'.format(len(diff)))
         for recipe_id in sorted(diff):
-            sys.stderr.write('{0}'.format(recipe_id))
+            sys.stderr.write('{0}\n'.format(recipe_id))
 
 if __name__ == '__main__':
     main()
